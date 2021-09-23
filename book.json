@@ -1,0 +1,563 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Данный сервис позволяет получить информацию о каталоге книг издательского дома. Сервис поддерживает возможность поиска книг по названию, по автору и добавления информации о новых изданиях, авторах.",
+    "version": "1.0.0",
+    "title": "API Каталога книг издательского дома",
+    "contact": {
+      "email": "dev@mail.ru"
+    }
+  },
+  "host": "book.ru",
+  "basePath": "/v1",
+  "paths": {
+    "/catalog": {
+      "get": {
+        "tags": [
+          "catalog"
+        ],
+        "summary": "get catalog",
+        "description": "Get list of products",
+        "operationId": "getCatalog",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "book",
+            "in": "query",
+            "description": "Book_name",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Book"
+              }
+            }
+          },
+          "400": {
+            "description": "Error"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/authors": {
+      "get": {
+        "tags": [
+          "catalog"
+        ],
+        "summary": "get author",
+        "description": "Get list of authors",
+        "operationId": "getAuthor",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "book",
+            "in": "query",
+            "description": "Author_name",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Book"
+              }
+            }
+          },
+          "400": {
+            "description": "Error"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "catalog"
+        ],
+        "summary": "Add new author",
+        "description": "Post new author",
+        "operationId": "postAuthor",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "book",
+            "in": "query",
+            "description": "Author_name",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Book"
+              }
+            }
+          },
+          "400": {
+            "description": "Error"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "catalog"
+        ],
+        "summary": "Update author's info",
+        "description": "Update author's info",
+        "operationId": "putAuthor",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Author_name",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Book"
+              }
+            }
+          },
+          "400": {
+            "description": "Error"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "catalog"
+        ],
+        "summary": "Delete author's info",
+        "description": "Delete author's info",
+        "operationId": "delAuthor",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "author",
+            "in": "query",
+            "description": "Author_name",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Book"
+              }
+            }
+          },
+          "400": {
+            "description": "Error"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/customer/{custId}": {
+      "get": {
+        "tags": [
+          "customer"
+        ],
+        "summary": "Find customer by ID",
+        "description": "Returns a customer",
+        "operationId": "getCustById",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "custId",
+            "in": "path",
+            "description": "ID to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Cust"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pet not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "customer"
+        ],
+        "summary": "Updates a customer's info",
+        "description": "",
+        "operationId": "updatecust",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "custId",
+            "in": "path",
+            "description": "ID of cust to update",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "first_name",
+            "in": "formData",
+            "description": "Updated first name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "second_name",
+            "in": "formData",
+            "description": "Updated second name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "birth_date",
+            "in": "formData",
+            "description": "Updated birthday",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "customer"
+        ],
+        "summary": "Deletes a customer",
+        "description": "",
+        "operationId": "deleteCust",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "custId",
+            "in": "path",
+            "description": "Cust id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Cust not found"
+          }
+        }
+      }
+    },
+    "/book/{bookid}": {
+      "get": {
+        "tags": [
+          "book"
+        ],
+        "summary": "Find book by id",
+        "description": "Returns a book",
+        "operationId": "getBookById",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "bookid",
+            "in": "path",
+            "description": "ID to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Book not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "book"
+        ],
+        "summary": "Updates a customer's info",
+        "description": "",
+        "operationId": "updatebook",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "bookid",
+            "in": "path",
+            "description": "ID of book to update",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Updated name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "Updated description",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Publishing_date",
+            "in": "formData",
+            "description": "Updated pub_date",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "book"
+        ],
+        "summary": "Deletes a book",
+        "description": "",
+        "operationId": "deleteBook",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "bookid",
+            "in": "path",
+            "description": "Book id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Book not found"
+          }
+        }
+      }
+    },
+    "/login": {
+      "get": {
+        "tags": [
+          "customer"
+        ],
+        "summary": "Logs user into the system",
+        "description": "",
+        "operationId": "loginUs",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "login",
+            "in": "query",
+            "description": "User's login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "Password",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Авторизация успешна"
+          },
+          "400": {
+            "description": "Ошибка входа. Проверьте правильность ввода логина  пароля"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Book": {
+      "type": "object",
+      "properties": {
+        "isbn": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "Cust": {
+      "type": "object",
+      "properties": {
+        "isbn": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    }
+  }
+}
